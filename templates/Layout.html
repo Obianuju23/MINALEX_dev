@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    <style>
+        /* Your existing styles remain unchanged */
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer img {
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Additional styles for the user and admin dashboards */
+        .dashboard {
+        display: none;
+    }
+
+    .user-dashboard,
+    .admin-dashboard {
+        /* Placeholder styles or comments */
+        background-color: #f0f0f0;
+        padding: 10px;
+        /* Add any other styles or comments you'd like */
+    }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+        <a href="{{ url_for('about') }}" class="navbar-brand">About</a>
+        <div id="account-dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}" id="register-link">Register</a>
+            </div>
+        </div>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="body-content">
+        {% block content %}
+            {# Your existing content goes here #}
+        {% endblock %}
+
+        <!-- User Dashboard -->
+        <div class="dashboard user-dashboard">
+            {# Content for user dashboard goes here #}
+            <p>Welcome, User!</p>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div class="dashboard admin-dashboard">
+            {# Content for admin dashboard goes here #}
+            <p>Welcome, Admin!</p>
+        </div>
+
+        <hr/>
+        <footer class="footer">
+            <p><img src="{{ url_for('static', filename='logo1.png')}}" width="210" height="195">&copy; 2024</p>
+        </footer>
+    </div>
+
+    <!-- Your existing scripts remain unchanged -->
+
+</body>
+</html>

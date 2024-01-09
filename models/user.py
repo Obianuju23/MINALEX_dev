@@ -14,7 +14,8 @@ class User(BaseModel, Base):
     middle_name = Column(String(128), nullable=True)
     password = Column(String(128), nullable=False)
     role = Column(String(128), nullable=False)
-
+    #role = Column(Enum("admin", "user"), nullable=False, default="user")
+    
     def __init__(self, email, first_name, last_name, middle_name, password, role):
         super().__init__()
         self.last_name = last_name

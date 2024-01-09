@@ -2,13 +2,33 @@
 """Template for our project app"""
 
 from flask import Flask, jsonify, make_response
-from models import storage
-# from api.v1.views import app_views
+from web_flask import admin_routes 
+from web_flask import user_routes
+from web_flask import task_routes 
 from flask_cors import CORS
+import sys
+import os
 
+# Assuming app.py is in api/v1 directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+grandparent_dir = os.path.dirname(parent_dir)
+
+# Add the parent and grandparent directories to sys.path
+sys.path.append(parent_dir)
+sys.path.append(grandparent_dir)
+
+from models.engine.db_storage import DBStorage
+# from models.engine import db_storage
+# from models import storage
+# from api.v1.views import app_views
 
 app = Flask(__name__)
+storage = DBStorage()
 # app.register_blueprint(app_views)
+app.register_blueprint(admin_routes)
+app.register_blueprint(user_routes)
+app.register_blueprint(task_routes)
 # cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "0.0.0.0"}})
 
