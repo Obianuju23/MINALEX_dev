@@ -2,13 +2,13 @@
 """This the base template for all model object instances."""
 
 from models.base import BaseModel, Base
-from sqlalchemy import Column, String, Enum, DateTime
+from sqlalchemy import Column, String, Enum, DateTime, ForeignKey
 
 
 class Task(BaseModel, Base):
     """User class"""
     __tablename__ = "task"
-    user_id = Column(String(60), nullable=False, primary_key=True)
+    user_id = Column(String(60), ForeignKey("user.id"), nullable=False)
     name = Column(String(128), nullable=False)
     description = Column(String(512), nullable=False)
     priority = Column(Enum("low", "medium", "high", "critical", "urgent", "on_hold", "normal", "none"), nullable=False, default="none")  # noqa E501
