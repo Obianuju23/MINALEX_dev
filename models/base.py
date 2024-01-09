@@ -2,9 +2,9 @@
 """Base class for gadgets."""
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, DateTime
 import uuid
-
+from datetime import datetime
 
 Base = declarative_base()
 
@@ -13,12 +13,8 @@ class BaseModel:
     """Base class for gadgets. This class does not map to a table."""
 
     id = Column(String(60), nullable=False, primary_key=True, default=uuid.uuid4)
-    email = Column(String(128), nullable=False)
-    first_name = Column(String(128), nullable=False)
-    last_name = Column(String(128), nullable=False)
-    middle_name = Column(String(128), nullable=True)
-    password = Column(String(128), nullable=False)
-    role = Column(String(128), nullable=False)
+    created_at = Column(DateTime, nullable=False, default=datetime.now())
+    updated_at = Column(DateTime, nullable=False, default=datetime.now())
 
     def __init__(self, *args, **kwargs):
         """
@@ -53,6 +49,7 @@ class BaseModel:
         """Save object instance to database"""
         from models import storage
 
+        self.updated_at = str(datetime.now())
         storage.new(self)
         storage.save()
 

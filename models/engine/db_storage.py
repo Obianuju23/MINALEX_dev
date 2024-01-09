@@ -4,11 +4,12 @@
 from models.base import Base
 from models.user import User
 from models.admin import Admin
+from models.task import Task
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 
-clx = {"User": User, "Admin": Admin}
+clx = {"User": User, "Admin": Admin, "Task": Task}
 
 
 class DBStorage:
