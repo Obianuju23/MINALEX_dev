@@ -2,7 +2,7 @@
 """Template for our project app"""
 
 from flask import Flask, jsonify, make_response
-from web_flask import admin_routes 
+from web_flask import admin_routes, user_route
 from web_flask import user_routes
 from web_flask import task_routes 
 from flask_cors import CORS
@@ -17,6 +17,7 @@ grandparent_dir = os.path.dirname(parent_dir)
 # Add the parent and grandparent directories to sys.path
 sys.path.append(parent_dir)
 sys.path.append(grandparent_dir)
+sys.path.append('/MINALEX/web_flask/admin_route.py/')
 
 from models.engine.db_storage import DBStorage
 # from models.engine import db_storage
