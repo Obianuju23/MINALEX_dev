@@ -77,6 +77,7 @@ def update_admin(admin_id):
 @admin_api.route('/admin/<admin_id>', methods=['DELETE'], strict_slashes=False)
 @validate_uuid4(id_param='admin_id')
 def delete_admin(admin_id):
+    """ Delete a Admin """
     if not request.get_json():
         return jsonify({"error": "Not a JSON"}), 400
     admin = storage.get(Admin, admin_id)
