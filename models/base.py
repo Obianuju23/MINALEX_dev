@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Base class for gadgets."""
-
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
 import uuid
@@ -12,17 +9,12 @@ Base = declarative_base()
 class BaseModel:
     """Base class for gadgets. This class does not map to a table."""
 
-    id = Column(String(60), nullable=False, primary_key=True, default=uuid.uuid4)
-    created_at = Column(DateTime, nullable=False, default=datetime.now())
-    updated_at = Column(DateTime, nullable=False, default=datetime.now())
+    id = Column(String(60), nullable=False, primary_key=True, default=str(uuid.uuid4))
+    created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
+    updated_at = Column(DateTime, nullable=False, default=datetime.utcnow)
 
     def __init__(self, *args, **kwargs):
-        """
-        Initialize
-        :param args: arguments
-        :param kwargs: keyword arguments
-
-        """
+        """Initialize"""
         if kwargs:
             for k, v in kwargs.items():
                 if k == "__class__":
@@ -46,15 +38,16 @@ class BaseModel:
         return obj_dict
 
     def save(self):
-        """Save object instance to database"""
+        """Save object instance to the database"""
         from models import storage
-
-        self.updated_at = str(datetime.now())
+    
+        self.updated_at = datetime.utcnow()
         storage.new(self)
         storage.save()
 
     def delete(self):
-        """delete the current instance from the storage"""
+        """Delete the current instance from the storage"""
         from models import storage
+    
         storage.delete(self)
         storage.save()
