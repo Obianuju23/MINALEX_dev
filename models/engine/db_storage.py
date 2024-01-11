@@ -48,7 +48,8 @@ class DBStorage:
 
     def close(self):
         """call remove() method on the private session attribute"""
-        self.__session.remove()
+        if self.__session:
+            self.__session.remove()
 
     def reload(self):
         """create all tables in the database"""

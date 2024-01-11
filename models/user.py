@@ -3,6 +3,8 @@
 
 from models.base import BaseModel, Base
 from sqlalchemy import Column, String
+# import relationship
+from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
@@ -14,13 +16,20 @@ class User(BaseModel, Base):
     middle_name = Column(String(128), nullable=True)
     password = Column(String(128), nullable=False)
     role = Column(String(128), nullable=False)
-    #role = Column(Enum("admin", "user"), nullable=False, default="user")
+    # set up a relationship with the task table
+    task = relationship("Task", backref="user", cascade="all, delete", passive_deletes=True)
     
-    def __init__(self, email, first_name, last_name, middle_name, password, role):
+    def __init__(self, email, first_name, last_name, password, role, middle_name=None):
         super().__init__()
         self.last_name = last_name
         self.first_name = first_name
         self.middle_name = middle_name or None
         self.email = email
         self.password = password
-        self.role = role or "user"
+        self.set_role(role)
+        
+    def set_role(self, role):
+        """Set the role to 'user'"""
+        if role.lower() != "user":
+            raise ValueError("Invalid role. Only 'user' is allowed.")
+        self.role = "user"

@@ -2,9 +2,9 @@
 """Template for our project app"""
 
 from flask import Flask, jsonify, make_response
-from web_flask import admin_routes, user_route
-from web_flask import user_routes
-from web_flask import task_routes 
+from api.v1.views.task import task_api
+from api.v1.views.user import user_api
+from api.v1.views.admin import admin_api
 from flask_cors import CORS
 import sys
 import os
@@ -26,11 +26,9 @@ from models.engine.db_storage import DBStorage
 
 app = Flask(__name__)
 storage = DBStorage()
-# app.register_blueprint(app_views)
-app.register_blueprint(admin_routes)
-app.register_blueprint(user_routes)
-app.register_blueprint(task_routes)
-# cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
+app.register_blueprint(admin_api)
+app.register_blueprint(user_api)
+app.register_blueprint(task_api)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "0.0.0.0"}})
 
 
