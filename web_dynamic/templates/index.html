@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 
-	<title>MinAlex Management Todo System</title>
+	<title>MINAlEX Task Management System</title>
+     
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -17,6 +18,54 @@
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="../static/assets/css/tooplate-style.css">
+
+     <style>
+
+#home {
+          background-image: url('../static/assets/img/home-bg.jpg'); /* Replace with the path to your background image */
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          color: #fff; /* Set text color to white or a suitable color for better visibility on the background */
+     }
+
+
+          .oval-link {
+              display: inline-block;
+              padding: 10px 20px; /* Adjust padding as needed */
+              border-radius: 50px; /* This creates an oval shape */
+              border: 2px solid #3498db; /* Border color */
+              text-decoration: none;
+              color: #3498db; /* Text color */
+          }
+  
+          .oval-link:hover {
+              background-color: #3498db; /* Change background color on hover */
+              color: #fff; /* Change text color on hover */
+          }
+
+          .navbar-brand {
+            float: left; /* Move the logo to the left */
+            margin-right: 10px; /* Add right margin for separation if needed */
+        }
+
+          .img-weblogo {
+            display: inline-block; /* Change display to block */
+            vertical-align: left;
+            margin-left: 50px
+        }
+          .home-info {
+            text-align: center; /* Center the content within the column */
+            margin-top: 50px; 
+        }
+
+          .online-form {
+            margin-top: 10px; /* Adjust the top margin for the form */
+        }
+
+
+          
+     </style>
 
 </head>
 <body>
@@ -43,21 +92,22 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="index.html" class="navbar-brand">MiniAlex Management Todo System</a>
+                    <a href="index.html" class="navbar-brand">MINALEX Task Manager</a>
                </div>
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                          <li><a href="#home" class="smoothScroll">Home</a></li>
-                         <li><a href="#feature" class="smoothScroll">Features</a></li>
                          <li><a href="#about" class="smoothScroll">About us</a></li>
-                         <li><a href="#pricing" class="smoothScroll">Pricing</a></li>
                          <li><a href="#contact" class="smoothScroll">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#">Say hello - <span>info@soft.co</span></a></li>
-                    </ul>
+                         <li><a href="#" class="oval-link">Register</a></li>
+                         <li><a href="#" class="oval-link">Login</a></li>
+                     </ul>
+                    
+                    
                </div>
 
           </div>
@@ -72,8 +122,12 @@
 
                     <div class="col-md-offset-3 col-md-6 col-sm-12">
                          <div class="home-info">
-                              <h3>professional landing page</h3>
-                              <h1>We help you manage your website successfully!</h1>
+                              <div class="home-info">
+                                   <img src="../static/assets/img/logo1.png" class="img-weblogo" alt="Task book and pen">
+                               </div>
+                              <h3>Effective and Efficient Task Management system</h3>
+                              <h1>We can help you manage your tasks successfully!</h1>
+                              
                               <form action="" method="get" class="online-form">
                                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required="">
                                    <button type="submit" class="form-control">Get started</button>
@@ -99,49 +153,46 @@
 
                     <div class="col-md-6 col-sm-6">
                          <ul class="nav nav-tabs" role="tablist">
-                              <li class="active"><a href="#tab01" aria-controls="tab01" role="tab" data-toggle="tab">Responsive</a></li>
+                              <li class="active"><a href="#tab01" aria-controls="tab01" role="tab" data-toggle="tab">Admin</a></li>
 
-                              <li><a href="#tab02" aria-controls="tab02" role="tab" data-toggle="tab">Mobile</a></li>
+                              <li><a href="#tab02" aria-controls="tab02" role="tab" data-toggle="tab">User</a></li>
 
-                              <li><a href="#tab03" aria-controls="tab03" role="tab" data-toggle="tab">Support</a></li>
+                              <li><a href="#tab03" aria-controls="tab03" role="tab" data-toggle="tab">Task</a></li>
                          </ul>
 
                          <div class="tab-content">
                               <div class="tab-pane active" id="tab01" role="tabpanel">
                                    <div class="tab-pane-item">
-                                        <h2>Minimal Design</h2>
-                                        <p>Nam feugiat a ante sollicitudin luctus. Quisque eget placerat massa. Ut quis ligula ornare, pellentesque velit eget, vestibulum est. Donec pretium tristique elit eget sodales. Pellentesque posuere.</p>
+                                        <h2>ADMINISTRATIVE ROLE</h2>
+                                        <p>The admin perfoms CRUD (Create, Read, Update and Delete) operations on tasks</p>
+                                        <p>The admin sets task priority, category, due dates and assigns it to a team or an individual for effective delivery.</p>
                                    </div>
                                    <div class="tab-pane-item">
-                                        <h2>Easy to use</h2>
-                                        <p>Aliquam massa massa, consectetur non mattis fringilla, sodales ac turpis. Morbi ac felis sagittis, faucibus mauris vitae, placerat mauris.</p>
+                                        <h2>User-friendly</h2>
+                                        <p>The interface and features are in a simplified pattern for easy usage.</p>
                                    </div>
                               </div>
 
 
                               <div class="tab-pane" id="tab02" role="tabpanel">
                                    <div class="tab-pane-item">
-                                        <h2>Compatible Browsers</h2>
-                                        <p>Nam maximus elit a metus luctus, a faucibus magna mattis. Ut malesuada viverra iaculis. Nunc euismod sit amet neque a tincidunt.</p>
+                                        <h2>USER ROLE</h2>
+                                        <p>The user can only view task and update the admin with the status of the task </p>
                                    </div>
                                    <div class="tab-pane-item">
                                         <h2>User Friendly</h2>
-                                        <p>Maecenas maximus velit lorem, quis pharetra turpis fringilla id. Vestibulum tempor facilisis efficitur. Sed nec nisi sit amet nibh pellentesque elementum.</p>
-                                   </div>
-                                   <div class="tab-pane-item">
-                                        <h2>HTML5 & CSS3</h2>
-                                        <p>In viverra ipsum ornare sapien rhoncus ullamcorper. Vivamus vitae risus ac mi vehicula sagittis. Nulla dictum magna sit amet pharetra aliquam.</p>
+                                        <p>The user need to always view to check for task updates and to know when a new task is assigned to the individual </p>
                                    </div>
                               </div>
-
+                                  
                               <div class="tab-pane" id="tab03" role="tabpanel">
                                    <div class="tab-pane-item">
-                                        <h2>Quick Support</h2>
-                                        <p>Mauris rutrum est at fringilla pulvinar. Nam ligula urna, lobortis non scelerisque vel, molestie eu massa. Nullam mattis elit at tortor accumsan.</p>
+                                        <h2>Task</h2>
+                                        <p>The admin creates and manages task very well for effective and efficient delivery of tasks .</p>
                                    </div>
                                    <div class="tab-pane-item">
-                                        <h2>Managed Stuffs</h2>
-                                        <p>Quisque ullamcorper sem quis sapien cursus efficitur. Sed id sodales ipsum. Morbi eleifend tempus erat sit amet vehicula. Nulla at posuere tellus, non mattis erat. Nulla id massa gravida.</p>
+                                        <h2>Manage Tasks</h2>
+                                        <p>The admin would go through all the available task then organize and prioritise them to achieve set goals </p>
                                    </div>
                               </div>
                          </div>
@@ -217,7 +268,7 @@
                          <div class="testimonial-image"></div>
                     </div>
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-10">
                          <div class="testimonial-info">
                               
                               <div class="section-title">
@@ -226,7 +277,7 @@
 
                               <div class="owl-carousel owl-theme">
                                    <div class="item">
-                                        <h3>Vestibulum tempor facilisis efficitur. Sed nec nisi sit amet nibh pellentesque elementum. In viverra ipsum ornare sapien rhoncus ullamcorper.</h3>
+                                        <h3>"MINALEX stands out amongst several task management tools with its simplicity and powerful functionality. The ability to customize task categories and set priorities has significantly improved my productivity. ".</h3>
                                         <div class="testimonial-item">
                                              <img src="../static/assets/img/tst-image1.jpg" class="img-responsive" alt="Michael">
                                              <h4>Michael</h4>
@@ -234,7 +285,7 @@
                                    </div>
 
                                    <div class="item">
-                                        <h3>Donec pretium tristique elit eget sodales. Pellentesque posuere, nunc id interdum venenatis, leo odio cursus sapien, ac malesuada nisl libero eget urna.</h3>
+                                        <h3>"The user-friendly interface and intuitive features of MINALEX Task Manager have made task organization a breeze and transformed the way I handle my daily tasks."</h3>
                                         <div class="testimonial-item">
                                              <img src="../static/assets/img/tst-image2.jpg" class="img-responsive" alt="Sofia">
                                              <h4>Sofia</h4>
@@ -242,7 +293,7 @@
                                    </div>
 
                                    <div class="item">
-                                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing eiusmod tempor incididunt ut labore et dolore magna.</h3>
+                                        <h3>As a busy professional, finding a task management system that seamlessly integrates into my workflow was crucial. MINALEX exceeded my expectations.</h3>
                                         <div class="testimonial-item">
                                              <img src="../static/assets/img/tst-image3.jpg" class="img-responsive" alt="Monica">
                                              <h4>Monica</h4>
@@ -256,79 +307,6 @@
                </div>
           </div>
      </section>
-
-
-     <!-- PRICING -->
-     <section id="pricing" data-stellar-background-ratio="0.5">
-          <div class="container">
-               <div class="row">
-
-                    <div class="col-md-12 col-sm-12">
-                         <div class="section-title">
-                              <h1>Choose any plan</h1>
-                         </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                         <div class="pricing-thumb">
-                             <div class="pricing-title">
-                                  <h2>Student</h2>
-                             </div>
-                             <div class="pricing-info">
-                                   <p>20 Responsive Designs</p>
-                                   <p>10 Dashboards</p>
-                                   <p>1 TB Storage</p>
-                                   <p>6 TB Bandwidth</p>
-                                   <p>24-hour Support</p>
-                             </div>
-                             <div class="pricing-bottom">
-                                   <span class="pricing-dollar">$200/mo</span>
-                                   <a href="#" class="section-btn pricing-btn">Register now</a>
-                             </div>
-                         </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                         <div class="pricing-thumb">
-                             <div class="pricing-title">
-                                  <h2>Business</h2>
-                             </div>
-                             <div class="pricing-info">
-                                   <p>50 Responsive Designs</p>
-                                   <p>30 Dashboards</p>
-                                   <p>2 TB Storage</p>
-                                   <p>12 TB Bandwidth</p>
-                                   <p>15-minute Support</p>
-                             </div>
-                             <div class="pricing-bottom">
-                                   <span class="pricing-dollar">$350/mo</span>
-                                   <a href="#" class="section-btn pricing-btn">Register now</a>
-                             </div>
-                         </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                         <div class="pricing-thumb">
-                             <div class="pricing-title">
-                                  <h2>Professional</h2>
-                             </div>
-                             <div class="pricing-info">
-                                   <p>100 Responsive Designs</p>
-                                   <p>60 Dashboards</p>
-                                   <p>5 TB Storage</p>
-                                   <p>25 TB Bandwidth</p>
-                                   <p>1-minute Support</p>
-                             </div>
-                             <div class="pricing-bottom">
-                                   <span class="pricing-dollar">$550/mo</span>
-                                   <a href="#" class="section-btn pricing-btn">Register now</a>
-                             </div>
-                         </div>
-                    </div>
-                    
-               </div>
-          </div>
-     </section>   
 
 
      <!-- CONTACT -->
@@ -369,7 +347,7 @@
 
                     <div class="copyright-text col-md-12 col-sm-12">
                          <div class="col-md-6 col-sm-6">
-                              <p>Copyright &copy; 2024 | Designed by: MinALEX
+                              <p>Copyright &copy; 2024 | Designed by: MINALEX
                 				<a rel="nofollow" href="http://tooplate.com">Tooplate</a></p>
                          </div>
 
