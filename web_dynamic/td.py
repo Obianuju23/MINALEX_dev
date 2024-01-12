@@ -20,12 +20,24 @@ def teardown_db(exception):
 def index():
     """The homepage of the application."""
     print("hello ALX Portfolia")
-    return render_template('landingpage.html')
+    return render_template('index.html')
 
 @app.route('/home', strict_slashes=False)
 def home():
     """The homepage of the application."""
-    return render_template('home.html')
+    return render_template('index.html')
+
+
+@app.route('/signup', strict_slashes=False)
+def signup():
+    """The homepage of the application."""
+    return render_template('login_register.html')
+
+
+@app.route('/login', strict_slashes=False)
+def login():
+    """The homepage of the application."""
+    return render_template('login.html')
 
 
 if __name__ == '__main__':
