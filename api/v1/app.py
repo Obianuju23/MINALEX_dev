@@ -9,7 +9,7 @@ from flask_cors import CORS
 import sys
 import os
 
-# Assuming app.py is in api/v1 directory
+# Assuming td.py is in api/v1 directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 grandparent_dir = os.path.dirname(parent_dir)
@@ -45,4 +45,4 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5200, debug=True)
