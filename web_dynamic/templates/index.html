@@ -92,7 +92,9 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="index.html" class="navbar-brand">MINALEX Task Manager</a>
+<!--                    <a href="index.html" class="navbar-brand">MINALEX Task Manager</a>-->
+                    <a href="{{ url_for('home') }}" class="navbar-brand">MINALEX Task Manager</a>
+
                </div>
 
                <!-- MENU LINKS -->
@@ -103,11 +105,10 @@
                          <li><a href="#contact" class="smoothScroll">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#" class="oval-link">Register</a></li>
-                         <li><a href="#" class="oval-link">Login</a></li>
+                         <li><a href="{{ url_for('login') }}" class="oval-link">Get Started</a></li>
                      </ul>
-                    
-                    
+
+
                </div>
 
           </div>
@@ -129,8 +130,9 @@
                               <h1>We can help you manage your tasks successfully!</h1>
                               
                               <form action="" method="get" class="online-form">
-                                   <input type="email" name="email" class="form-control" placeholder="Enter your email" required="">
-                                   <button type="submit" class="form-control">Get started</button>
+<!--                                   <input type="email" name="email" class="form-control" placeholder="Enter your email" required="">-->
+<!--                                   // make this button redirect to the login page upon clikcin on it-->
+                                      <a href="{{ url_for('login') }}" class="btn btn-default">Get Started</a>
                               </form>
                          </div>
                     </div>
@@ -227,9 +229,9 @@
                          <div class="team-thumb">
                               <img src="../static/assets/img/team-image1.jpg" class="img-responsive" alt="Andrew Orange">
                               <div class="team-info team-thumb-up">
-                                   <h2>Yusuf Nathan</h2>
-                                   <small>backend developer</small>
-                                   <p>Handles the database code of the app</p>
+                                   <h2>Yusuf Abdulwasiu</h2>
+                                   <small>Backend developer</small>
+                                   <p>Handles the database and base code of the app</p>
                               </div>
                          </div>
                     </div>
@@ -374,6 +376,7 @@
      <script src="../static/assets/js/owl.carousel.min.js"></script>
      <script src="../static/assets/js/smoothscroll.js"></script>
      <script src="../static/assets/js/custom.js"></script>
+     
 
 </body>
 </html>
