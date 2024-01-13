@@ -19,7 +19,6 @@ def teardown_db(exception):
 @app.route('/', strict_slashes=False)
 def index():
     """The homepage of the application."""
-    print("hello ALX Portfolia")
     return render_template('index.html')
 
 @app.route('/home', strict_slashes=False)
@@ -38,6 +37,12 @@ def signup():
 def login():
     """The homepage of the application."""
     return render_template('login.html')
+
+
+@app.route('/task', strict_slashes=False)
+def task():
+    """The homepage of the application."""
+    return render_template('task.html')
 
 
 if __name__ == '__main__':
