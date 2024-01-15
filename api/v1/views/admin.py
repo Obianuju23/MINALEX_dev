@@ -86,3 +86,18 @@ def delete_admin(admin_id):
         return jsonify({"message": "Admin deleted successfully"}), 200
     else:
         return jsonify({"error": "Admin not found"}), 404
+
+
+@admin_api.route('/admin/verify', methods=['GET'], strict_slashes=False)
+def verify_admin():
+    """ Verify an Admin """
+    if not request.get_json():
+        return jsonify({"error": "Not a JSON"}), 400
+    data = request.get_json()
+    if 'email' not in data or 'password' not in data:
+        return jsonify({"error": "Email and password are required"}), 400
+    admin = storage.get(Admin, data['email'])
+    if admin and bcrypt.checkpw(data['password'].encode('utf-8'), admin.password.encode('utf-8')):
+        return jsonify(admin.to_dict()), 200
+    else:
+        return jsonify({"error": "Invalid email or password"}), 401

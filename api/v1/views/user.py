@@ -12,9 +12,11 @@ user_api = Blueprint('user_api', __name__)
 @user_api.route('/user', methods=['POST'], strict_slashes=False)
 def create_user():
     """ Create a new User """
+    print("Bug!!!")
     if not request.get_json():
         return jsonify({"error": "Not a JSON"}), 400
     data = request.get_json()
+    print(data)
     # ensure the required fields are in the data
     required_fields = ['email', 'first_name', 'last_name', 'password']
     for field in required_fields:
@@ -27,21 +29,23 @@ def create_user():
     for obj in all_obj:
         if obj.email == data['email']:
             return jsonify({"error": "Email already exists"}), 400
-    # Validate and create an User instance
+    # Validate and create a User instance
     user = User(**data)
     user.save()
     return jsonify(user.to_dict()), 201
 
 
-@user_api.route('/user', methods=['GET'], defaults={'user_id': None}, strict_slashes=False)
+@user_api.route('/user', methods=['GET'], strict_slashes=False)
+def all_users():
+    users = [user.to_dict() for user in storage.all(User).values()]
+    return jsonify(users)
+
+
 @user_api.route('/user/<user_id>', methods=['GET'], strict_slashes=False)
 @validate_uuid4(id_param='user_id')
 def get_user(user_id):
-    if user_id:
-        user = storage.get(User, user_id)
-        return jsonify(user.to_dict())
-    all_user = [user.to_dict() for user in storage.all(User).values()]
-    return jsonify(all_user), 200
+    user = storage.get(User, user_id)
+    return jsonify(user.to_dict())
 
 
 @user_api.route('/user/<user_id>', methods=['PUT'], strict_slashes=False)
@@ -83,3 +87,35 @@ def delete_user(user_id):
         return jsonify({"message": "User deleted successfully"}), 200
     else:
         return jsonify({"error": "User not found"}), 404
+
+
+# Verify a user
+@user_api.route("/users/verify", methods=["POST"], strict_slashes=False)
+def verify_user():
+    """Verify a user by email."""
+    print("Hi")
+    if not request.json:
+        return jsonify({"error": "Not a valid JSON"}), 400
+    kwargs = request.get_json()
+    print(kwargs)
+    # validate if the current content exists
+    all_obj_users = storage.all(User).values()
+    # validate if the email exists
+    email = kwargs["email"]
+    for obj in all_obj_users:
+        if obj.email == email:
+            # validate the password
+            if bcrypt.checkpw(kwargs["password"].encode('utf-8'), obj.password.encode('utf-8')):
+                # password is valid
+                print("Good!!")
+                print(obj.id)
+                return jsonify({"login": "Successful", "id": obj.id}), 201
+            else:
+                # password is invalid
+                return jsonify({"error": "Invalid password"}), 400
+        else:
+            continue
+    else:
+        return jsonify({"error": "User not found"}), 404
+    
+

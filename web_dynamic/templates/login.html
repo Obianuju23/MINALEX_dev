@@ -16,6 +16,9 @@
 			window.scrollTo(0, 1);
 		}
 	</script>
+	<!-- Include jQuery (you can also use a CDN) -->
+<!--	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
+<!--	<script src="../static/assets/js/login.js"></script>-->
 	<!-- Meta tag Keywords -->
 
 	<!-- css files -->
@@ -34,7 +37,8 @@
 <body>
 	<div class="main-bg">
 		<!-- title -->
-		<h1 class="heading" font-weight="bold" font-size="20px">MinAlex Management System</h1>
+		<h1 style="font-size: 25px; font-family: serif;">MinAlex Management System</h1>
+
 		<!-- //title -->
 		<div class="sub-main-w3">
 			<div class="image-style">
@@ -46,17 +50,17 @@
 					<input type="radio" name="sections" id="option1" checked>
 					<label for="option1" class="icon-left-w3pvt"><span class="fa fa-user-circle" aria-hidden="true"></span>Login</label>
 					<article>
-						<form action="#" method="post">
+						<form id="loginForm">
 							<h3 class="legend">Login Here</h3>
 							<div class="input">
 								<span class="fa fa-envelope-o" aria-hidden="true"></span>
-								<input type="email" placeholder="Email" name="email" required />
+								<input type="email" placeholder="Email" name="email" id="email" required />
 							</div>
 							<div class="input">
 								<span class="fa fa-key" aria-hidden="true"></span>
-								<input type="password" placeholder="Password" name="password" required />
+								<input type="password" placeholder="Password" name="password" id="password" required />
 							</div>
-							<button type="submit" class="btn submit">Login</button>
+							<button type="button" class="btn submit" onclick="submitLoginForm()">Login</button>
 							<a href="#" class="bottom-text-w3ls">Forgot Password?</a>
 						</form>
 					</article>
@@ -117,12 +121,15 @@
 			<div class="clear"></div>
 		</div>
 		<!-- copyright -->
+		<div>
+		</div>
+		<!-- //copyright -->
 		<div class="copyright">
 			<h2>&copy; MinAlex 2024. All rights reserved </h2>
 		</div>
-		<!-- //copyright -->
 	</div>
 
 </body>
+
 
 </html>

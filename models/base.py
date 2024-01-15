@@ -20,6 +20,8 @@ class BaseModel:
                 if k == "__class__":
                     continue
                 setattr(self, k, v)
+            if kwargs.get("id", None) is None:
+                self.id = str(uuid.uuid4())
         else:
             self.id = str(uuid.uuid4())
 
@@ -35,6 +37,13 @@ class BaseModel:
         obj_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in obj_dict:
             del obj_dict["_sa_instance_state"]
+        if "password" in obj_dict:
+            del obj_dict["password"]
+            # Exclude 'users' attribute
+        if "users" in obj_dict:
+            del obj_dict["users"]
+        if "admin" in obj_dict:
+            del obj_dict["admin"]
         return obj_dict
 
     def save(self):
