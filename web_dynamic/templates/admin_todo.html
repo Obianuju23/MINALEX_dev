@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <style>
+        .gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #7e40f6;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(126, 64, 246, 1),
+    rgba(80, 139, 252, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(126, 64, 246, 1),
+    rgba(80, 139, 252, 1)
+  );
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, 0.2);
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
+
+table.text-white thead th {
+            font-size: 24px; /* Adjust the font size as needed */
+}
+
+.text-center h1.my-4 {
+        font-size: 30px; /* Adjust the font size as needed */
+    }
+
+table.text-white tbody th,
+    table.text-white tbody td {
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+table.text-white tbody th {
+    display: flex;
+    align-items: center;
+}
+
+table.text-white tbody th img {
+    margin-right: 8px; /* Adjust the margin as needed */
+}
+
+/* Add this style to create horizontal lines between rows */
+table.text-white tbody tr {
+    border-bottom: 1px solid #000;
+}
+
+/* Remove border from last row to avoid an extra line */
+table.text-white tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Other existing styles... */
+
+
+    </style>
+
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd', // You can adjust the date format
+            autoclose: true
+        });
+    });
+</script>
+
+    <!-- Include any other head elements if needed -->
+</head>
+<body>
+    <!-- Paste the HTML code here -->
+    <section class="vh-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+
+        <div class="card mask-custom">
+          <div class="card-body p-4 text-white">
+
+            <div class="text-center pt-3 pb-2">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                alt="Check" width="60">
+              <h1 class="my-4">Task List</h1>
+            </div>
+
+            <table class="table text-white mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Team Member</th>
+                  <th scope="col">Name</th>
+		  <th scope="col">Description</th>
+                  <th scope="col">Priority</th>
+		  <th scope="col">Status</th>
+		  <th scope="col">Completed_date</th>
+		  <th scope="col">Due_date</th>
+		  <th scope="col">Unassigned</th>
+		  <th scope="col">Category</th>
+		  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="fw-normal">
+                  <th>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: auto;">
+                    <span class="ms-2">Alice Mayer</span>
+                  </th>
+                  <td class="align-middle">
+                    <span>Call Sam For payments</span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-danger">To pay up debts</span></h6>
+                  </td>
+                  <td class="align-middle">
+			<div class="form-group">
+            		    <select class="form-select form-select-sm" aria-label="Priority">
+                		<option value="low">Low</option>
+                		<option value="medium">Medium</option>
+                		<option value="high">High</option>
+               			<option value="urgent">Urgent</option>
+                		<option value="critical">Critical</option>
+                		<option value="on hold">On hold</option>
+                		<option value="normal">Normal</option>
+                		<option value="none">None</option>
+            		    </select>
+        		</div>
+		    </td>
+		     <td class="align-middle">
+			<div class="form-group">
+            		    <select class="form-select form-select-sm" aria-label="Status">
+                		<option value="suspended">Suspended</option>
+                		<option value="abandoned">Abandoned</option>
+                		<option value="completed">Completed</option>
+               			<option value="in progress">In progress</option>
+                		<option value="ongoing">Ongoing</option>
+                		<option value="review">Review</option>
+                		<option value="canceled">Canceled</option>
+				<option value="deferred">Deferred</option>
+                		<option value="none">None</option>
+            		    </select>
+        		</div>
+		    </td>
+		    <td class="align-middle datepicker">
+    			<div class="form-group">
+        			<input type="text" class="form-control" placeholder="Select date" id="datepicker">
+    			</div>
+		    </td>
+		    <td class="align-middle datepicker">
+    			<div class="form-group">
+        			<input type="text" class="form-control" placeholder="Select date" id="datepicker">
+    			</div>
+		    </td>
+		    <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-danger">YES</span></h6>
+                    </td>
+		     <td class="align-middle">
+			<div class="form-group">
+            		    <select class="form-select form-select-sm" aria-label="Category">
+                		<option value="work">Work</option>
+                		<option value="personal">Personal</option>
+                		<option value="home">Home</option>
+               			<option value="meetings">Meetings</option>
+                		<option value="wealth">Wealth</option>
+                		<option value="errands">Errands</option>
+                		<option value="finances">Finances</option>
+				<option value="social">Social</option>
+                		<option value="none">None</option>
+            		    </select>
+        		</div>
+		    </td>
+		    <td class="align-middle">		    
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-check fa-lg text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  </td>
+                </tr>
+                <tr class="fw-normal">
+                  <th>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: auto;">
+                    <span class="ms-2">Kate Moss</span>
+                  </th>
+                  <td class="align-middle">Make payment to Bluedart</td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                  </td>
+                  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-check fa-lg text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  </td>
+                </tr>
+                <tr class="fw-normal">
+                  <th>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: auto;">
+                    <span class="ms-2">Danny McChain</span>
+                  </th>
+                  <td class="align-middle">Office rent</td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
+		  </td>
+		  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-check fa-lg text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  </td>                 
+                </tr>
+                <tr class="fw-normal">
+                  <th>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: auto;">
+                    <span class="ms-2">Alexa Chung</span>
+                  </th>
+                  <td class="align-middle">Office grocery shopping</td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                  </td>
+		  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-check fa-lg text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  </td>
+                </tr>
+                <tr class="fw-normal">
+                  <th class="border-0">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                      alt="avatar 1" style="width: 45px; height: auto;">
+                    <span class="ms-2">Ben Smith</span>
+                  </th>
+                  <td class="border-0 align-middle">Ask for Lunch to Clients</td>
+                  <td class="border-0 align-middle">
+                    <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                  </td>
+		  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-check fa-lg text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  </td>
+                 </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+    </section>
+</body>
+</html>
+
