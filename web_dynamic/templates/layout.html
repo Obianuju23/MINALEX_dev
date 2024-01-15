@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    <style>
+
+	.footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer img {
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+        <a href="{{ url_for('enternew') }}" class="navbar-item">Add New Task</a>
+        <a href="{{ url_for('list') }}" class="navbar-item">Review and Edit Task</a>
+    </div>
+
+    <div class="body-content">
+        {% block content %}
+        {% endblock %}
+        <hr/>
+        <footer class="footer">
+            <p><img src="{{ url_for('static', filename='logo1.png')}} "width="210" height="195">&copy; 2024</p>
+        </footer>
+    </div>
+</body>
+</html>
