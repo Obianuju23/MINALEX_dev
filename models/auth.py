@@ -2,6 +2,7 @@
 from functools import wraps
 from flask import g, jsonify
 
+
 def admin_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):

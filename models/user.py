@@ -17,7 +17,7 @@ class User(BaseModel, Base):
     password = Column(String(128), nullable=False)
     role = Column(String(128), nullable=False)
     # set up a relationship with the task table
-    task = relationship("Task", backref="user", cascade="all, delete", passive_deletes=True)
+    task = relationship("Task", backref="user", cascade="all, delete, delete-orphan", passive_deletes=True)
     
     def __init__(self, email, first_name, last_name, password, role, middle_name=None):
         super().__init__()
