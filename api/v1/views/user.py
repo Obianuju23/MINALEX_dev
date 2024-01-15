@@ -32,6 +32,7 @@ def create_user():
     # Validate and create a User instance
     user = User(**data)
     user.save()
+    print(user.to_dict())
     return jsonify(user.to_dict()), 201
 
 
@@ -90,7 +91,7 @@ def delete_user(user_id):
 
 
 # Verify a user
-@user_api.route("/users/verify", methods=["POST"], strict_slashes=False)
+@user_api.route("/user/verify", methods=["POST"], strict_slashes=False)
 def verify_user():
     """Verify a user by email."""
     print("Hi")

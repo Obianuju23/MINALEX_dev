@@ -11,7 +11,7 @@ import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'os.urandom(32)'  # Replace with your secret key
-cors = CORS(app, resources={r"*": {"origins": "0.0.0.0"}})
+CORS(app)
 
 
 @app.teardown_appcontext
@@ -55,22 +55,18 @@ def order_task_by_priority(list_of_task):
 @app.route('/login/user', methods=['POST'], strict_slashes=False)
 def login_user():
     """Render the Login page."""
-    url = "http://127.0.0.1:5200/users/verify"
-    print("Debug is here")
-
     # Check if the request has a JSON payload
-    if not request.is_json:
-        return jsonify({'error': 'Invalid request format'}), 400
+    # if not request.is_json:
+    #     return jsonify({'error': 'Invalid request format'}), 400
 
-    # Access JSON data
-    data = request.json
-
-    if "email" not in data or "password" not in data:
-        return jsonify({'error': 'Missing email or password in request'}), 400
-
-    email = data['email']
-    password = data['password']
-
+    email = request.form.get('email')
+    if not email:
+        return jsonify({'error': 'Email is required'}), 400
+    
+    password = request.form.get('password')
+    if not password:
+        return jsonify({'error': 'Password is required'}), 400
+    
     obj = {
         'email': email,
         'password': password
@@ -80,17 +76,14 @@ def login_user():
         'Content-Type': 'application/json'
     }
 
-    print(obj)
+    url = "http://127.0.0.1:5200/user/verify"
     response = requests.post(url, json=obj, headers=headers)
-    print("Hi", response.status_code)
 
     if response.status_code == 201:
         # just remember, we need to render this page based on his credentials
         flash("Successfully logged in", "success")
         user_id = response.json().get('id')
         user_obj = storage.get(User, user_id)  # Assuming 'storage' is defined
-        print("Login Successful")
-        print(user_obj.to_dict())
         # render the success page
         return redirect(url_for('success', user_id=user_id))
         # return redirect(url_for('get_task', user_id=user_id))
@@ -102,10 +95,11 @@ def login_user():
 @app.route('/success', strict_slashes=False)
 def success():
     """Render the success page base on the user properties"""
+    """Render the success page based on the user properties"""
+    from models.user import User
+    
     user_id = request.args.get('user_id')
     user = storage.get(User, user_id)
-
-    # Render the success page with user properties
     return render_template('success.html', user=user)
 
 
@@ -114,6 +108,7 @@ def get_task(user_id):
     """Render the tasks page."""
     user_task = order_task_by_priority(storage.get(User, user_id).task)
     user = storage.get(User, user_id)
+
     return render_template('task.html', tasks=user_task, user=user, user_id=user_id)
 
 
@@ -122,6 +117,42 @@ def task():
     """The homepage of the application."""
     return render_template('new.html')
 
+
+@app.route('/register/new', methods=['POST'], strict_slashes=False)
+def register_new():
+    """Render the Register page."""
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    middle_name = request.form.get('middle_name')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    confirm_password = request.form.get('confirm_password')
+    
+    if password != confirm_password:
+        flash("Password mismatch", "danger")
+        return "Password mismatch", (400)
+    obj = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'middle_name': middle_name,
+        'email': email,
+        'password': password,
+        'role': 'user'
+    }
+    print(obj)
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    print("laaaapllaaaaaaaapaaaaaaaaaaapaaaaaaaaap")
+    url = "http://127.0.0.1:5200/user"
+    response = requests.post(url, json=obj, headers=headers)
+    print("HI: ", response.status_code)
+    if response.status_code == 200:
+        flash("Successfully registered", "success")
+        return render_template('login.html')
+    else:
+        flash("Email already exists", "danger")
+        return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

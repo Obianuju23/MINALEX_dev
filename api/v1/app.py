@@ -29,7 +29,7 @@ storage = DBStorage()
 app.register_blueprint(admin_api)
 app.register_blueprint(user_api)
 app.register_blueprint(task_api)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "0.0.0.0"}})
+CORS(app)
 
 
 @app.teardown_appcontext
