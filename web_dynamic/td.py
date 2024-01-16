@@ -19,9 +19,10 @@ def teardown_db(exception):
     """Close the database at the end of the request."""
     storage.close()
 
+
 @app.route('/home', strict_slashes=False)
 @app.route('/', strict_slashes=False)
-def index():
+def home():
     """The homepage of the application."""
     return render_template('index.html')
 
