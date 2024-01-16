@@ -19,15 +19,9 @@ def teardown_db(exception):
     """Close the database at the end of the request."""
     storage.close()
 
-
+@app.route('/home', strict_slashes=False)
 @app.route('/', strict_slashes=False)
 def index():
-    """The homepage of the application."""
-    return render_template('index.html')
-
-
-@app.route('/home', strict_slashes=False)
-def home():
     """The homepage of the application."""
     return render_template('index.html')
 
@@ -58,11 +52,11 @@ def login_user():
     # Check if the request has a JSON payload
     # if not request.is_json:
     #     return jsonify({'error': 'Invalid request format'}), 400
-
+    
+    # Get the email and password from the request payload
     email = request.form.get('email')
     if not email:
         return jsonify({'error': 'Email is required'}), 400
-    
     password = request.form.get('password')
     if not password:
         return jsonify({'error': 'Password is required'}), 400
@@ -71,7 +65,7 @@ def login_user():
         'email': email,
         'password': password
     }
-
+    # set headers
     headers = {
         'Content-Type': 'application/json'
     }
@@ -99,6 +93,8 @@ def success():
     from models.user import User
     
     user_id = request.args.get('user_id')
+    if not user_id:
+        return jsonify({"error": "User not found"}), 404
     user = storage.get(User, user_id)
     return render_template('success.html', user=user)
 
@@ -143,10 +139,8 @@ def register_new():
     headers = {
         'Content-Type': 'application/json'
     }
-    print("laaaapllaaaaaaaapaaaaaaaaaaapaaaaaaaaap")
     url = "http://127.0.0.1:5200/user"
     response = requests.post(url, json=obj, headers=headers)
-    print("HI: ", response.status_code)
     if response.status_code == 200:
         flash("Successfully registered", "success")
         return render_template('login.html')
