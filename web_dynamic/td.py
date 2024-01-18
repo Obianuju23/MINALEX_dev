@@ -3,7 +3,6 @@
 
 from models.user import User
 from models.task import Task
-from models.admin import Admin
 from flask import Flask, abort, flash, redirect, render_template, request, jsonify, session, url_for
 from models import storage
 from flask_cors import CORS
@@ -150,4 +149,4 @@ def register_new():
         return render_template('login.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=6000, debug=True)
