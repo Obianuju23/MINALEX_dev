@@ -1,26 +1,30 @@
 #!/usr/bin/env python3
 """module for the DBStorage class"""
+import os
+from dotenv import load_dotenv
 
 from models.base import Base
 from models.user import User
-from models.admin import Admin
 from models.task import Task
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+load_dotenv()
 
-clx = {"User": User, "Admin": Admin, "Task": Task}
+clx = {"User": User, "Task": Task}
 
 
 class DBStorage:
-    """interaacts with the MySQL database"""
+    """interacts with the MySQL database"""
 
     __engine = None
     __session = None
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        self.__engine = create_engine("sqlite:///miniALEX.db")
+        # use the database URI from the environment variable
+        minalex_db = os.getenv('DATABASE_URI')
+        self.__engine = create_engine(minalex_db)
 
     def all(self, cls=None):
         """query on the current database session"""
@@ -29,7 +33,7 @@ class DBStorage:
             if cls is None or cls is clx[clss] or cls is clss:
                 objs = self.__session.query(clx[clss]).all()
                 for obj in objs:
-                    key = obj.__class__.__name__ + "." + obj.id
+                    key = f"{obj.__class__.__name__}.{obj.id}"
                     new_dict[key] = obj
         return new_dict
 

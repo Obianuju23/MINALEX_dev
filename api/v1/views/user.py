@@ -18,10 +18,13 @@ def create_user():
     data = request.get_json()
     print(data)
     # ensure the required fields are in the data
-    required_fields = ['email', 'first_name', 'last_name', 'password']
+    required_fields = ['email', 'first_name', 'last_name', 'password', 'role']
     for field in required_fields:
         if field not in data:
-            return jsonify({"error": f"Missing required field: {field}"}), 400
+            return jsonify({
+                "error": f"Missing required field: {field}",
+                "genFormat": "{'email': 'string', 'first_name': 'string', 'last_name': 'string', 'password': 'string', 'role': 'string'}"  # noqa
+            }), 400
     hash_pwd = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
     data['password'] = hash_pwd
     # check if email already exists
@@ -58,23 +61,20 @@ def update_user(user_id):
     exclude = ['id', 'created_at', 'updated_at', '__class__']
     user = storage.get(User, user_id)
     all_obj = storage.all(User).values()
-    if user:
+    if not user:
+        return jsonify({"error": "User not found"}), 404
         # check if the content is not in the exclude list
-        for key, value in data.items():
-            if key not in exclude:
+    for key, value in data.items():
+        if key not in exclude:
+            # ensure the updated field email is not in the database
+            if key == 'email':
                 for obj in all_obj:
                     if obj.email == data['email'] and obj.id != user_id:
                         return jsonify({"error": "Email already exists"}), 400
-                setattr(user, key, value)
-        # ensure the updated field email is not in the database
-        all_obj = storage.all(User).values()
-        for obj in all_obj:
-            if obj.email == data['email'] and obj.id != user_id:
-                return jsonify({"error": "Email already exists"}), 400
-        user.save()
-        return jsonify(user.to_dict())
-    else:
-        return jsonify({"error": "User not found"}), 404
+            setattr(user, key, value)
+    user.save()
+    return jsonify(user.to_dict())
+
 
 
 @user_api.route('/user/<user_id>', methods=['DELETE'], strict_slashes=False)
